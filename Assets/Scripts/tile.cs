@@ -6,10 +6,21 @@ public class tile : MonoBehaviour
 {
     [SerializeField] private Color baseColor, offsetColor;
     [SerializeField] private SpriteRenderer myRenderer;
+    [SerializeField] private GameObject highlight;
 
+    private void Start() {
+        highlight  = gameObject.transform.GetChild(0).gameObject;
+    }
     public void Init(bool isOffset)
     {
         myRenderer.color = isOffset ? baseColor : offsetColor;
-        Debug.Log(myRenderer.color);
+    }
+
+    private void OnMouseOver() {
+        highlight.SetActive(true);
+    }
+
+    private void OnMouseExit() {
+        highlight.SetActive(false);
     }
 }
